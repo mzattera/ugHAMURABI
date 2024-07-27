@@ -15,6 +15,8 @@ REM limitations under the License.
 OPTION DEFAULT TYPE INTEGER
 TILEMAP ENABLE: CLS
 
+' percStarved=0.0:acres=200:population=1:GOTO 860
+
 10 PRINT SPC((TILES WIDTH - 8)/2);"HAMURABI"
 20 PRINT SPC((TILES WIDTH - 18)/2);"CREATIVE COMPUTING"
    PRINT SPC((TILES WIDTH - 22)/2);"MORRISTOWN, NEW JERSEY"
@@ -23,22 +25,23 @@ TILEMAP ENABLE: CLS
 90 PRINT " FOR A TEN-YEAR TERM OF OFFICE.":PRINT
 
    REM Initializes random number generator in a way that works for emulators too
-   PRINT "PRESS A KEY...": WAIT KEY RELEASE: RANDOMIZE RASTER LINE 
+   PRINT: PRINT: PRINT "PRESS ANY KEY...";: WAIT KEY: RANDOMIZE RASTER LINE 
  
-95 dead=0: DIM percStarved AS FLOAT: percStarved=0: DIM app AS FLOAT
+95  dead=0: DIM percStarved AS FLOAT: percStarved=0: DIM app AS FLOAT
 100 year=0: population=95: store=2800: harvested=3000: eaten=harvested-store
 110 bpa=3: acres=harvested/bpa: babies=5: plagueRoll=1: REM this is a value in [-3,16] that when <=0 will cause a plague
 
 210 starved=0
 
-	CLS
-215 PRINT:PRINT:PRINT "HAMURABI: I BEG TO REPORT TO YOU, ";: year=year+1
-217 PRINT "IN YEAR ";year;", ";starved;" PEOPLE STARVED,";babies;" CAME TO THE CITY.": PRINT
+215 CLS: PRINT "HAMURABI: I BEG TO REPORT TO YOU!": PRINT : year=year+1
+217 PRINT "YEAR       : ";year
+	PRINT "STARVED    : ";starved
+	PRINT "NEWCOMERS  : ";babies
 218 population=population+babies
 
 227 IF plagueRoll>0 THEN 230
 228 population=population/2
-229 PRINT "A HORRIBLE PLAGUE STRUCK! HALF THE PEOPLE DIED."
+229 PRINT "A HORRIBLE PLAGUE STRUCK!"
 
 230	PRINT "POPULATION : ";population
 	PRINT "ACRES OWNED: ";acres
@@ -52,18 +55,22 @@ TILEMAP ENABLE: CLS
 310 c=RND(10): bpa=c+17
 312 PRINT "LAND PRICE : ";bpa;" BUSHELS/ACRE."
 320 PRINT "BUY HOW MANY ACRES? ";
-321 INPUT q: IF q<0 THEN 850: REM Get angry and leave
+321 INPUT q: IF q>=0 THEN 322
+	GOSUB 850: REM Error message
+	GOTO 320
 322 IF bpa*q<=store THEN 330
 323 GOSUB 710: REM Error message
 324 GOTO 320
 330 IF q=0 THEN 340
 331 acres=acres+q: store=store-bpa*q: c=0
-334 GOTO 400
+334 GOTO 410
 
 	REM Check whether player wants to sell land
 	
 340 PRINT "SELL HOW MANY ACRES? ";
-341 INPUT q: IF q<0 THEN 850: REM Get angry and leave
+341 INPUT q: IF q>=0 THEN 342
+	GOSUB 850: REM Error message
+	GOTO 340
 342 IF q<acres THEN 350
 343 GOSUB 720: REM Error message
 344 GOTO 340
@@ -71,21 +78,24 @@ TILEMAP ENABLE: CLS
 
 	REM Feed people
 	
-400 
 410 PRINT "FEED HOW MANY BUSHELS? ";
 411 INPUT q
-412 IF q<0 THEN 850: REM Get angry and leave
+412 IF q>=0 THEN 420
+	GOSUB 850: REM Error message
+	GOTO 410
 418 REM *** TRYING TO USE MORE GRAIN THAN IS IN SILOS?
 420 IF q<=store THEN 430
 421 GOSUB 710: REM Error message
 422 GOTO 410
-430 store=store-q: c=1: PRINT
+430 store=store-q: c=1
 
 	REM Plant crop
 	
 440 PRINT "PLANT HOW MANY ACRES? ";
 441 INPUT s: IF s=0 THEN 511
-442 IF s<0 THEN 850: REM Get angry and leave
+442 IF s>=0 THEN 445
+	GOSUB 850: REM Error message
+	GOTO 440
 444 REM *** TRYING TO PLANT MORE ACRES THAN YOU OWN?
 445 IF s<=acres THEN 450
 446 GOSUB 720: REM Error message
@@ -96,7 +106,7 @@ TILEMAP ENABLE: CLS
 453 GOTO 440
 454 REM *** ENOUGH PEOPLE TO TEND THE CROPS?
 455 IF s<10*population THEN 510
-460 PRINT "BUT YOU HAVE ONLY ";population;" PEOPLE TO TEND THE FIELDS! NOW THEN, ";
+460 PRINT "YOU HAVE ONLY ";population;" WORKERS!"
 470 GOTO 440
 510 store=store-(s/2)
 
@@ -134,7 +144,7 @@ TILEMAP ENABLE: CLS
 	REM Asked to sell too many bushels
 	
 710 PRINT "YOU HAVE ONLY ";
-711 PRINT store;"BUSHELS OF GRAIN."
+711 PRINT store;" BUSHELS."
 712 RETURN
 
 	REM Asked to sell too many acres
@@ -147,11 +157,11 @@ TILEMAP ENABLE: CLS
 800 c=RND(5)+1
 801 RETURN
 
-	REM An invalid order was entered (e.g. buy a negative quantity of acres)
+	REM An invalid order was entered
+	REM Print error instead of ending like in the original
 	
-850 PRINT: PRINT "HAMURABI: I CANNOT DO WHAT YOU WISH."
-855 PRINT "GET YOURSELF ANOTHER STEWARD!!!!!"
-857 GOTO 990
+850 PRINT "I CANNOT DO WHAT YOU WISH."
+857 RETURN
 
 	REM End of game
 	
@@ -178,4 +188,4 @@ TILEMAP ENABLE: CLS
 
 990 PRINT: FOR n=1 TO 10: BELL: NEXT n
 995 PRINT "SO LONG FOR NOW.": PRINT
-999 END
+999 PRINT "PRESS ANY KEY...";: WAIT KEY: GOTO 95

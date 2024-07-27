@@ -7,3 +7,13 @@ has been taken from [this repository](https://github.com/tajmone/hamurabi-collec
 accordingly to which it has been reproduced with its author's permission, and it can't be used in any commercial project.
 
 **I do not own any copyright on the original code.**
+
+## Platfoms
+
+| Platform | Status                      |
+|----------|-----------------------------|
+| ColecoVision  | <span style="color:red">Not Working</span> |
+| Atari 400/800  | <span style="color:green">Working</span> |
+| Atari XL/XE  | <span style="color:green">Working</span> |
+| Commodore 128 (8510)  | <span style="color:red">Not Working</span> |
+| Commodore 128 (Z80)  | <span style="color:green">Working</span> |
