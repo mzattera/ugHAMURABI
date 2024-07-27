@@ -13,7 +13,6 @@ REM See the License for the specific language governing permissions and
 REM limitations under the License.
 
 OPTION DEFAULT TYPE INTEGER
-
 TILEMAP ENABLE: CLS
 
 10 PRINT SPC((TILES WIDTH - 8)/2);"HAMURABI"
