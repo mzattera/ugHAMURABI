@@ -1,0 +1,6 @@
+.atari800.cfg
+*.xex
+*.prg
+*.bin
+*.tap
+/ORIGINAL hammurabi.bas
