@@ -14,12 +14,17 @@ Below a summary of how the program works on each different target.
 
 | Platform | Status                      |
 |----------|-----------------------------|
-| ColecoVision  | <span style="color:red">Not Working</span> |
+| Amstrad CPC 664  | <span style="color:red">Not Working (scroll issue)</span> |
 | Atari 400/800  | <span style="color:green">Working</span> |
 | Atari XL/XE  | <span style="color:green">Working</span> |
-| Commodore 128 (8510)  | <span style="color:red">Not Working</span> |
+| ColecoVision  | <span style="color:red">Not Working</span> |
+| Commodore 128 (8510)  | <span style="color:red">Not Working (memory overflow)</span> |
 | Commodore 128 (Z80)  | <span style="color:green">Working</span> |
-| Commodore 64 | <span style="color:red">Not Working</span> |
+| Commodore 64 | <span style="color:red">Not Working (INPUT issue)</span> |
 | Commodore VIC 20 | Not Enough Memory |
 | Commodore PLUS/4 | Not Enough Memory |
-
+| Dragon 32/64 | <span style="color:green">Working</span> |
+| MSX | <span style="color:green">Working</span> |
+| Tandy CoCo | <span style="color:red">Not Working (compiler issue)</span> |
+| Tandy CoCo 3 | <span style="color:red">Not Working (compiler issue)</span> |
+| ZX Spectrum | <span style="color:red">Not Working (INPUT issue)</span> |
