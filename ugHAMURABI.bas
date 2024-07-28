@@ -57,10 +57,9 @@ TILEMAP ENABLE: CLS
 321 INPUT q: IF q>=0 THEN 322
 	GOSUB 850: REM Error message
 	GOTO 320
-322 IF bpa*q<=store THEN 330
+322 IF bpa*q<=store THEN 331
 323 GOSUB 710: REM Error message
 324 GOTO 320
-330 IF q=0 THEN 340
 331 acres=acres+q: store=store-bpa*q: c=0
 334 GOTO 410
 
