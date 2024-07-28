@@ -8,7 +8,9 @@ accordingly to which it has been reproduced with its author's permission, and it
 
 **I do not own any copyright on the original code.**
 
-## Platfoms
+## Targets
+
+Below a summary of how the program works on each different target.
 
 | Platform | Status                      |
 |----------|-----------------------------|
@@ -17,3 +19,7 @@ accordingly to which it has been reproduced with its author's permission, and it
 | Atari XL/XE  | <span style="color:green">Working</span> |
 | Commodore 128 (8510)  | <span style="color:red">Not Working</span> |
 | Commodore 128 (Z80)  | <span style="color:green">Working</span> |
+| Commodore 64 | <span style="color:red">Not Working</span> |
+| Commodore VIC 20 | Not Enough Memory |
+| Commodore PLUS/4 | Not Enough Memory |
+

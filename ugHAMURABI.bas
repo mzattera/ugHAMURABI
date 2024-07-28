@@ -15,11 +15,9 @@ REM limitations under the License.
 OPTION DEFAULT TYPE INTEGER
 TILEMAP ENABLE: CLS
 
-' percStarved=0.0:acres=200:population=1:GOTO 860
-
-10 PRINT SPC((TILES WIDTH - 8)/2);"HAMURABI"
-20 PRINT SPC((TILES WIDTH - 18)/2);"CREATIVE COMPUTING"
-   PRINT SPC((TILES WIDTH - 22)/2);"MORRISTOWN, NEW JERSEY"
+10 CENTER "HAMURABI"
+20 CENTER "CREATIVE COMPUTING"
+   CENTER "MORRISTOWN, NEW JERSEY"
 30 PRINT:PRINT:PRINT
 80 PRINT "TRY YOUR HAND AT GOVERNING ANCIENT SUMERIA";
 90 PRINT " FOR A TEN-YEAR TERM OF OFFICE.":PRINT
@@ -27,27 +25,28 @@ TILEMAP ENABLE: CLS
    REM Initializes random number generator in a way that works for emulators too
    PRINT: PRINT: PRINT "PRESS ANY KEY...";: WAIT KEY: RANDOMIZE RASTER LINE 
  
-95  dead=0: DIM percStarved AS FLOAT: percStarved=0: DIM app AS FLOAT
+95  dead=0: DIM percStarved AS FLOAT: percStarved=0.0: DIM app AS FLOAT
 100 year=0: population=95: store=2800: harvested=3000: eaten=harvested-store
-110 bpa=3: acres=harvested/bpa: babies=5: plagueRoll=1: REM this is a value in [-3,16] that when <=0 will cause a plague
+110 bpa=3: acres=harvested/bpa: babies=5
+	plagueRoll=1: REM this is a value in [-3,16] that when <=0 will cause a plague
 
 210 starved=0
 
 215 CLS: PRINT "HAMURABI: I BEG TO REPORT TO YOU!": PRINT : year=year+1
-217 PRINT "YEAR       : ";year
-	PRINT "STARVED    : ";starved
-	PRINT "NEWCOMERS  : ";babies
+217 PRINT "YEAR        : ";year
+	PRINT "STARVED     : ";starved
+	PRINT "NEW ARRIVALS: ";babies
 218 population=population+babies
 
 227 IF plagueRoll>0 THEN 230
 228 population=population/2
 229 PRINT "A HORRIBLE PLAGUE STRUCK!"
 
-230	PRINT "POPULATION : ";population
-	PRINT "ACRES OWNED: ";acres
-	PRINT "HARVESTED  : ";bpa;" BUSHELS/ACRE"
-	PRINT "RATS ATE   : ";eaten;" BUSHELS"
-	PRINT "STORE      : ";store;" BUSHELS": PRINT
+230	PRINT "POPULATION  : ";population
+	PRINT "ACRES OWNED : ";acres
+	PRINT "HARVESTED   : ";bpa;" BUSHELS/ACRE"
+	PRINT "RATS ATE    : ";eaten;" BUSHELS"
+	PRINT "IN STORE    : ";store;" BUSHELS": PRINT
 270 IF year=11 THEN 860
 
 	REM Check whether player wants to buy land
@@ -122,7 +121,7 @@ TILEMAP ENABLE: CLS
 530 store=store-eaten+harvested
 531 GOSUB 800
 532 REM *** LET'S HAVE SOME BABIES
-533 babies=INT((20.0*acres+store)*c/population/100.0+1.0)
+533 babies=INT((20.0*acres+store)*c/population/100.0)+1.0
 539 REM *** HOW MANY PEOPLE HAD FULL TUMMIES?
 540 fed=q/20
 541 REM *** HORROS, A 15% CHANCE OF PLAGUE
@@ -152,7 +151,7 @@ TILEMAP ENABLE: CLS
 720 PRINT "YOU OWN ONLY ";acres;" ACRES."
 730 RETURN
 
-	REM Roll a 6-side dice in c
+	REM Roll a 5-side dice in c
 	
 800 c=RND(5)+1
 801 RETURN
@@ -165,7 +164,7 @@ TILEMAP ENABLE: CLS
 
 	REM End of game
 	
-860 PRINT: PRINT "IN YOUR TERM "; INT(percStarved); "% ";
+860 PRINT: PRINT "IN YOUR OFFICE TERM "; INT(percStarved); "% ";
 862 PRINT "PEOPLE DIED ON AVERAGE EACH YEAR. A TOTAL OF ";
 865 PRINT dead;"!!": app=acres/population
 870 PRINT "YOU STARTED WITH 10 ACRES/PERSON AND ENDED WITH ";
@@ -189,3 +188,5 @@ TILEMAP ENABLE: CLS
 990 PRINT: FOR n=1 TO 10: BELL: NEXT n
 995 PRINT "SO LONG FOR NOW.": PRINT
 999 PRINT "PRESS ANY KEY...";: WAIT KEY: GOTO 95
+
+
