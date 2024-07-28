@@ -51,16 +51,17 @@ TILEMAP ENABLE: CLS
 
 	REM Check whether player wants to buy land
 	
-310 c=RND(10): bpa=c+17
+310 bpa=RND(10)+17
 312 PRINT "LAND PRICE : ";bpa;" BUSHELS/ACRE."
 320 PRINT "BUY HOW MANY ACRES? ";
 321 INPUT q: IF q>=0 THEN 322
 	GOSUB 850: REM Error message
 	GOTO 320
-322 IF bpa*q<=store THEN 331
+322 IF bpa*q<=store THEN 330
 323 GOSUB 710: REM Error message
 324 GOTO 320
-331 acres=acres+q: store=store-bpa*q: c=0
+330 IF q=0 THEN 340
+331 acres=acres+q: store=store-bpa*q
 334 GOTO 410
 
 	REM Check whether player wants to sell land
@@ -72,7 +73,7 @@ TILEMAP ENABLE: CLS
 342 IF q<acres THEN 350
 343 GOSUB 720: REM Error message
 344 GOTO 340
-350 acres=acres-q: store=store+bpa*q: c=0
+350 acres=acres-q: store=store+bpa*q
 
 	REM Feed people
 	
@@ -85,7 +86,7 @@ TILEMAP ENABLE: CLS
 420 IF q<=store THEN 430
 421 GOSUB 710: REM Error message
 422 GOTO 410
-430 store=store-q: c=1
+430 store=store-q
 
 	REM Plant crop
 	
@@ -110,15 +111,15 @@ TILEMAP ENABLE: CLS
 
 	REM Harvest, check rats, recompute store and population
 	
-511 GOSUB 800
+511 GOSUB 800: REM Put random value in c
 512 REM *** A BOUNTIFUL HARVEST!
 515 bpa=c: harvested=s*bpa: eaten=0
-521 GOSUB 800
+521 GOSUB 800: REM Put random value in c
 522 IF (c MOD 2)<>0 THEN 530
 523 REM *** RATS ARE RUNNING WILD!!
 525 eaten=store/c
 530 store=store-eaten+harvested
-531 GOSUB 800
+531 GOSUB 800: REM Put random value in c
 532 REM *** LET'S HAVE SOME BABIES
 533 babies=INT((20.0*acres+store)*c/population/100.0)+1.0
 539 REM *** HOW MANY PEOPLE HAD FULL TUMMIES?
