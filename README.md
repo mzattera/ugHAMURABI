@@ -10,11 +10,11 @@ accordingly to which it has been reproduced with its author's permission, and it
 
 ## Targets
 
-Below a summary of how the program works on each different target.
+Below a summary of how the program works on each different target; targets not listed have not been tested.
 
 | Platform | Status                      |
 |----------|-----------------------------|
-| Amstrad CPC 664  | <span style="color:red">Not Working (scroll issue)</span> |
+| Amstrad CPC 664  | <span style="color:green">Working</span> |
 | Atari 400/800  | <span style="color:green">Working</span> |
 | Atari XL/XE  | <span style="color:green">Working</span> |
 | ColecoVision  | <span style="color:red">Not Working</span> |
@@ -25,6 +25,6 @@ Below a summary of how the program works on each different target.
 | Commodore PLUS/4 | Not Enough Memory | 
 | Dragon 32/64 | <span style="color:green">Working</span> |
 | MSX | <span style="color:green">Working</span> |
-| Tandy CoCo | <span style="color:red">Not Working (compiler issue)</span> |
-| Tandy CoCo 3 | <span style="color:red">Not Working (compiler issue)</span> |
+| Tandy CoCo | <span style="color:green">Working</span> |
+| Tandy CoCo 3 | <span style="color:green">Working</span> |
 | ZX Spectrum | <span style="color:green">Working</span> |
