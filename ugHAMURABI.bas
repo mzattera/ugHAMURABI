@@ -1,4 +1,4 @@
-﻿REM Copyright 2024 Massimiliano "Maxi" Zattera
+﻿0REM Copyright 2024 Massimiliano "Maxi" Zattera
 REM
 REM Licensed under the Apache License, Version 2.0 (the "License");
 REM you may not use this file except in compliance with the License.
@@ -12,11 +12,11 @@ REM WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 REM See the License for the specific language governing permissions and
 REM limitations under the License.
 
+TILEMAP ENABLE: CLS
 DEFINE SCREEN MODE UNIQUE
 DEFINE DOUBLE BUFFER OFF
 DEFINE TASK COUNT 1
 DEFINE DEFAULT TYPE INTEGER
-TILEMAP ENABLE: CLS
 
 10 CENTER "HAMURABI"
 20 CENTER "CREATIVE COMPUTING"
@@ -124,7 +124,7 @@ TILEMAP ENABLE: CLS
 530 store=store-eaten+harvested
 531 GOSUB 800: REM Put random value in c
 532 REM *** LET'S HAVE SOME BABIES
-533 babies=INT((20.0*acres+store)*c/population/100.0)+1.0
+533 babies=INT((20.0*acres+store)*c/population/100.0)+1
 539 REM *** HOW MANY PEOPLE HAD FULL TUMMIES?
 540 fed=q/20
 541 REM *** HORROS, A 15% CHANCE OF PLAGUE
@@ -191,5 +191,6 @@ TILEMAP ENABLE: CLS
 990 PRINT: FOR n=1 TO 10: BELL: NEXT n
 995 PRINT "SO LONG FOR NOW.": PRINT
 999 PRINT "PRESS ANY KEY...";: WAIT KEY: GOTO 95
+
 
 
