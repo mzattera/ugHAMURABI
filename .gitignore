@@ -1,10 +1,9 @@
-.atari800.cfg
+*.cfg
 *.xex
 *.prg
 *.bin
 *.tap
 /ORIGINAL hammurabi.bas
 *.rom
-ugHAMURABI.cpc.dsk
 *.sym
 *.dsk
